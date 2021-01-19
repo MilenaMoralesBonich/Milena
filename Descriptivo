@@ -1,0 +1,61 @@
+# Descripción de variable dependiente P12
+table(Encuesta_Nacional_UDP_2015$P12)
+prop.table((Encuesta_Nacional_UDP_2015$P12))*100
+prop.table(table(Encuesta_Nacional_UDP_2015$P12))*100
+# Descripción de variables independientes
+# 1. Pregunta 32B
+table(Encuesta_Nacional_UDP_2015$P32B)
+prop.table((Encuesta_Nacional_UDP_2015$P32B))*100
+prop.table(table(Encuesta_Nacional_UDP_2015$P32B))*100
+# 2. Pregunta 33
+table(Encuesta_Nacional_UDP_2015$P33)
+prop.table((Encuesta_Nacional_UDP_2015$P33))*100
+prop.table(table(Encuesta_Nacional_UDP_2015$P33))*100
+# 3. Pregunta 36
+table(Encuesta_Nacional_UDP_2015$P36)
+prop.table((Encuesta_Nacional_UDP_2015$P36))*100
+prop.table(table(Encuesta_Nacional_UDP_2015$P36))*100
+# 4. Pregunta 42D
+table(Encuesta_Nacional_UDP_2015$P42D)
+prop.table((Encuesta_Nacional_UDP_2015$P42D))*100
+prop.table(table(Encuesta_Nacional_UDP_2015$P42D))*100
+# 5. Pregunta 45C
+table(Encuesta_Nacional_UDP_2015$P45C)
+prop.table((Encuesta_Nacional_UDP_2015$P45C))*100
+prop.table(table(Encuesta_Nacional_UDP_2015$P45C))*100
+# Tabla de contingencia P12*P32B
+table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P32B)
+prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P32B))*100
+apoyoDemo_conflicto<- prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P32B))*100
+write.csv2(apoyoDemo_conflicto,file = "apoyoDemo_conflicto.csv")
+# Tabla de contingencia P12*P33
+table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P33)
+prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P33))*100
+apoyoDemo_orden<- prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P33))*100
+write.csv2(apoyoDemo_orden,file = "apoyoDemo_orden.csv")
+# Tabla de contingencia P12*P36
+table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P36)
+prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P36))*100
+apoyoDemo_manif_FoD<- prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P36))*100
+write.csv2(apoyoDemo_manif_FoD,file = "apoyoDemo_manif_FoD.csv")
+# Tabla de contingencia P12*P42D
+table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P42D)
+prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P42D))*100
+apoyoDemo_escucha<- prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P42D))*100
+write.csv2(apoyoDemo_escucha,file = "apoyoDemo_escucha.csv")
+# Tabla de contingencia P12*P45C
+table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P45C)
+prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P45C))*100
+apoyoDemo_manif_aceptable<- prop.table(table(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P45C))*100
+write.csv2(apoyoDemo_manif_aceptable,file = "apoyoDemo_manif_aceptable.csv")
+# Pruebas de Correlación
+# P12*P32B
+cor.test(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P32B)
+# P12*P33
+cor.test(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P33)
+# P12*P36
+cor.test(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P36)
+# P12*P42D
+cor.test(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P42D)
+# P12*P45C
+cor.test(Encuesta_Nacional_UDP_2015$P12, Encuesta_Nacional_UDP_2015$P45C)
