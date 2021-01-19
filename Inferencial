@@ -1,0 +1,53 @@
+# Ver base de datos
+View(Encuesta_Nacional_UDP_2015)
+Encuesta_Nacional_UDP_2015[sapply(Encuesta_Nacional_UDP_2015, is.numeric)] <- lapply(Encuesta_Nacional_UDP_2015[sapply(Encuesta_Nacional_UDP_2015, is.numeric)], as.factor)
+# Instalar Paquetes 
+library(tidyverse)
+library(dplyr)
+library(plyr)
+library(tidyr)
+library(mlogit)
+# Creacion variables dicotomicas
+# 1. Variable Dependiente
+Encuesta_Nacional_UDP_2015$P12recod = revalue(Encuesta_Nacional_UDP_2015$P12, c("1"="1", "2"="0", "3"="0", "8"="0", "9"="0"))
+table(Encuesta_Nacional_UDP_2015$P12recod)
+# 2. Variables Independientes
+# 2.1 Pregunta 32B 
+Encuesta_Nacional_UDP_2015$P32Brecod = revalue(Encuesta_Nacional_UDP_2015$P32B, c("1"="1", "2"="1", "3"="1", "4"="0", "8"="0", "9"="0"))
+table(Encuesta_Nacional_UDP_2015$P32Brecod)
+# 2.2 Pregunta 33
+Encuesta_Nacional_UDP_2015$P33recod = revalue(Encuesta_Nacional_UDP_2015$P33, c("1"="1", "2"="0", "9"="0"))
+table(Encuesta_Nacional_UDP_2015$P33recod)
+# 2.3 Pregunta 36
+Encuesta_Nacional_UDP_2015$P36recod = revalue(Encuesta_Nacional_UDP_2015$P36, c("1"="1", "2"="0", "8"="0", "9"="0"))
+table(Encuesta_Nacional_UDP_2015$P36recod)
+# 2.4 Pregunta 42D
+Encuesta_Nacional_UDP_2015$P42Drecod = revalue(Encuesta_Nacional_UDP_2015$P42D, c("1"="1", "2"="1", "3"="0", "4"="0", "5"="0", "8"="0", "9"="0"))
+table(Encuesta_Nacional_UDP_2015$P42Drecod)
+# 2.5 Pregunta 45C
+Encuesta_Nacional_UDP_2015$P45Crecod = revalue(Encuesta_Nacional_UDP_2015$P45C, c("1"="1", "2"="1", "3"="1", "4"="0", "5"="0", "6"="0", "7"="0", "8"="0", "9"="0"))
+table(Encuesta_Nacional_UDP_2015$P45Crecod)
+
+# 4. Instalar Paquete "Stargazer"
+
+install.packages("stargazer")
+library(stargazer)
+# 5. Correr Regresion Logistica Binaria 
+m1 = glm(Encuesta_Nacional_UDP_2015$P12recod ~ P32Brecod + P33recod + P36recod, data = Encuesta_Nacional_UDP_2015, family = binomial())
+View(m1)
+summary(m1)
+# 6. Tabular Regresion Logistica Binaria
+stargazer(m1, title = "Modelo 1", align =TRUE, out = "m1.txt")
+# 7. Instalar funcion de bondad de ajuste
+install.packages("rsq")
+library(rsq)
+# 8. Calcular bondad de ajuste
+rsq(m1)
+m2 = glm(Encuesta_Nacional_UDP_2015$P12recod ~ P32Brecod + P33recod + P36recod + P42Drecod, data = Encuesta_Nacional_UDP_2015, family = binomial())
+summary(m2)
+m3 = glm(Encuesta_Nacional_UDP_2015$P12recod ~ P32Brecod + P33recod + P36recod + P42Drecod + P45Crecod, data = Encuesta_Nacional_UDP_2015, family = binomial())
+View(m3)
+summary(m3)
+stargazer(m1,m2,m3, title = "Resultados", align = TRUE, out = "Resultados2.txt")
+rsq(m2)
+rsq(m3)
